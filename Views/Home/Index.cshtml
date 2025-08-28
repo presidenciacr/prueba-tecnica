@@ -1,8 +1,75 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Employee Management System";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container">
+    <div class="text-center mb-5">
+        <h1 class="display-4">Employee Management System</h1>
+        <p class="lead">Manage your organization's employees, departments, and positions efficiently</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-people fs-1 text-primary mb-3"></i>
+                    <h5 class="card-title">Employees</h5>
+                    <p class="card-text">Manage employee information, assignments, and details</p>
+                    <a asp-controller="Employee" asp-action="Index" class="btn btn-primary">
+                        <i class="bi bi-arrow-right"></i> Manage Employees
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-building fs-1 text-success mb-3"></i>
+                    <h5 class="card-title">Departments</h5>
+                    <p class="card-text">Organize and manage company departments and their budgets</p>
+                    <a asp-controller="Department" asp-action="Index" class="btn btn-success">
+                        <i class="bi bi-arrow-right"></i> Manage Departments
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-briefcase fs-1 text-info mb-3"></i>
+                    <h5 class="card-title">Positions</h5>
+                    <p class="card-text">Define and manage job positions and salary ranges</p>
+                    <a asp-controller="Position" asp-action="Index" class="btn btn-info">
+                        <i class="bi bi-arrow-right"></i> Manage Positions
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Quick Tips</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <i class="bi bi-info-circle text-primary"></i>
+                            Create departments first, then positions, and finally add employees
+                        </li>
+                        <li class="list-group-item">
+                            <i class="bi bi-info-circle text-primary"></i>
+                            Use the navigation menu at the top to quickly access different sections
+                        </li>
+                        <li class="list-group-item">
+                            <i class="bi bi-info-circle text-primary"></i>
+                            Each list view has search and sorting capabilities
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

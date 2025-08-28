@@ -1,13 +1,26 @@
+using Microsoft.EntityFrameworkCore;
+using PruebaTecnicaPresidencia.Data;
+
 namespace PruebaTecnicaPresidencia
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddEndpointsApiExplorer();
+
+            // Add database context
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
+                // Enable detailed query logging
+                options.EnableSensitiveDataLogging()
+                       .LogTo(Console.WriteLine);
+            });
 
             var app = builder.Build();
 
@@ -29,6 +42,14 @@ namespace PruebaTecnicaPresidencia
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
+            // Initialize Database and Seed Data
+            using (var scope = app.Services.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                await context.Database.MigrateAsync();
+                await DataSeeder.SeedDataAsync(context);
+            }
 
             app.Run();
         }
